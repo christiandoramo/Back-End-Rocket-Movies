@@ -5,3 +5,4 @@ Exercícios da Rocketseat trilha Explorer
 ## Topico - Query builder
 
 # Desafio - Aplicação com node
+![modelo ER](./Modelo%20ER.png)

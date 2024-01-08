@@ -1,0 +1,27 @@
+{
+  "name": "desafio-aplicacao-em-node",
+  "version": "1.0.0",
+  "description": "Exercícios da Rocketseat trilha Explorer",
+  "main": "./src/server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./src/server.js",
+    "start": "node ./src/server.js",
+    "migrate": "knex migrate:latest",
+    "list": "knex migrate:list"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express-async-errors": "^3.1.1",
+    "knex": "^3.1.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
