@@ -30,29 +30,36 @@ class UsersController {
 
         const user = await orm('users').where({ id }).first()
         if (!user)
-            throw new AppError("User not found")
-        const userWithUpdatedEmail = await orm('users').where({ email }).first()
-        if (userWithUpdatedEmail)
-            throw new AppError("This email is not available")
-        if (name === user.name)
-            throw new AppError('The name is the same as the one already registered')
-        if (email === user.email)
-            throw new AppError('The email is the same as the one already registered')
+            throw new AppError("User not found", 400)
+        if (email) {
+            const userWithUpdatedEmail = await orm('users').where({ email }).first()
+            if (userWithUpdatedEmail)
+                throw new AppError("This email is not available", 400)
+        }
+        if (name) {
+            if (name === user.name)
+                throw new AppError('The name is the same as the one already registered', 400)
+        }
+        if (email) {
+            if (email === user.email)
+                throw new AppError('The email is the same as the one already registered', 400)
+        }
+
         if (newPassword)
             if (oldPassword) {
                 const validatePreviousPassword = await pkg.compare(oldPassword, user.password)
                 if (!validatePreviousPassword)
-                    throw new AppError('To change your password you need to enter your previous one')
+                    throw new AppError('To change your password you need to enter your previous one', 400)
                 const checkIfEqualsPreviewPassword = await pkg.compare(newPassword, user.password)
                 if (checkIfEqualsPreviewPassword)
-                    throw new AppError('The new password is the same as the one already registered')
+                    throw new AppError('The new password is the same as the one already registered', 400)
             } else
-                throw new AppError('To change your password you need to inform the previous one')
+                throw new AppError('To change your password you need to inform the previous one', 400)
         user.name = name ?? user.name
         user.email = email ?? user.email
         user.password = newPassword ? (await pkg.hash(newPassword, 8)) : user.password;
         await orm('users').where({ id }).update(user)
-        return res.status(200).json('User updated with Success')
+        return res.status(200).json("User updated with Success")
     }
 }
 export { UsersController }
