@@ -21,3 +21,12 @@ npx knex migrate:list - veja migrates nao upadas
 npx knex migrate:down <nome> - para desmontar migrates
 npx knex migrate:up - veja montar as migrates - agora atualizadas
 npx knext migrate:latest - pode atualizar os desmontados
+
+
+--- novas anotações
+criar .env
+instalar npm install dotenv --save
+
+pm2  - npx pm2 init 
+npm install pm2
+colocar em scripts -> "pm2-runtime start ecosystem.config.js --env production" -> troquei para .cjs por conta do module

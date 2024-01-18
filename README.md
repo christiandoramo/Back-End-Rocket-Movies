@@ -6,3 +6,4 @@ Exercícios da Rocketseat trilha Explorer
 
 # Desafio - Aplicação com node
 ![modelo ER](./Modelo%20ER.png)
+

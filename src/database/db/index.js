@@ -7,7 +7,6 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 function connection() {
-    console.log(__dirname)
     open({
         filename: path.resolve(__dirname, "..", "database.db"),
         driver: sqlite3.Database
